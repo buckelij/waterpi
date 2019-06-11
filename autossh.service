@@ -4,6 +4,11 @@
 [Unit]
 Description=Keeps a tunnel to 'be.sif.io' open
 After=network.target
+# try every 30 seconds. Set Burst so Limit is never reached and it isn't disabled.
+RestartSec=30
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
 
 [Service]
 User=pi
