@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
 
+#30 * * * * timeout 3000 ssh -N autossh@be.sif.io -R 2023:127.0.0.1:22
+
+
 # sudo apt install git python3-gpiozero python3-setuptools python3-dev build-essential
 # git clone https://github.com/adafruit/Adafruit_Python_DHT
 # cd Adafruit_Python_DHT
 # sudo python3 setup.py install
 # cd ..
 # python3 dht11.py
+# 
 
 # Copyright (c) 2014 Adafruit Industries
 # Author: Tony DiCola
@@ -30,6 +34,7 @@
 # SOFTWARE.
 import Adafruit_DHT
 import os
+import datetime
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
@@ -46,12 +51,13 @@ pin = os.environ.get('PIN') or 15
 # Try to grab a sensor reading.  Use the read_retry method which will retry up
 # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 # Note that sometimes you won't get a reading and
 # the results will be null (because Linux can't
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
 if humidity is not None and temperature is not None:
-    print('Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity))
+    print('{0}, {1:0.1f}*C, {2:0.1f}%'.format(timestamp, temperature, humidity))
 else:
-    print('Failed to get reading. Try again!')
+    print('{0}, NA, NA'.format(timestamp))
