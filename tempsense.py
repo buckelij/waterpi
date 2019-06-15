@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-#30 * * * * timeout 3000 ssh -N autossh@be.sif.io -R 2023:127.0.0.1:22
+# 25 * * * * cd ~/waterpi && ./tempsense.py >> `date '+%Y'`-temp.csv && git add -A && git commit -m tempdata && git push
 
 
 # sudo apt install git python3-gpiozero python3-setuptools python3-dev build-essential
