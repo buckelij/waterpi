@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-# 25 * * * * cd ~/waterpi && ./tempsense.py >> `date '+%Y'`-temp.csv && git add -A && git commit -m tempdata && git push
+# 25 * * * * cd ~/waterpi && ./tempsense.py >> `date '+\%Y'`-temp.csv && git add -A && git commit -m tempdata && git push
 
 
 # sudo apt install git python3-gpiozero python3-setuptools python3-dev build-essential
