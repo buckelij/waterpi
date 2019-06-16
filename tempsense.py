@@ -35,6 +35,7 @@
 import Adafruit_DHT
 import os
 import datetime
+import subprocess
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
@@ -51,6 +52,7 @@ pin = os.environ.get('PIN') or 15
 # Try to grab a sensor reading.  Use the read_retry method which will retry up
 # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+watersensor = subprocess.run(['./watersense.sh'], stdout=subprocess.PIPE)
 timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 # Note that sometimes you won't get a reading and
@@ -58,6 +60,6 @@ timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
 if humidity is not None and temperature is not None:
-    print('{0}, {1:0.1f}*C, {2:0.1f}%'.format(timestamp, temperature, humidity))
+    print('{0}, {1:0.1f}*C, {2:0.1f}%, {3}'.format(timestamp, temperature, humidity, watersensor.stdout.decode('utf-8').strip()))
 else:
     print('{0}, NA, NA'.format(timestamp))
