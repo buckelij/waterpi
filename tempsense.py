@@ -62,4 +62,4 @@ timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 if humidity is not None and temperature is not None:
     print('{0}, {1:0.1f}*C, {2:0.1f}%, {3}'.format(timestamp, temperature, humidity, watersensor.stdout.decode('utf-8').strip()))
 else:
-    print('{0}, NA, NA'.format(timestamp))
+    print('{0}, , ,'.format(timestamp))
