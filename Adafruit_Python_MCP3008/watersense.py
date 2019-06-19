@@ -23,5 +23,5 @@ mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 # SPI_DEVICE = 0
 # mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
-v = mcp.read_adc(7)
+v = mcp.read_adc(0)
 print('{0:>4}'.format(v))
