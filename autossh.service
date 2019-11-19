@@ -1,0 +1,19 @@
+#sudo cp autossh.service /etc/systemd/system/
+#sudo systemctl enable autossh.service
+
+[Unit]
+Description=Keeps a tunnel to 'be.sif.io' open
+After=network.target
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+
+[Service]
+User=pi
+Environment=AUTOSSH_GATETIME=0
+ExecStart=/usr/bin/autossh -M 0 -N -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l autossh be.sif.io -R 2022:127.0.0.1:22 -i /home/pi/.ssh/id_rsa
+# try every 30 seconds. Set Burst so Limit is never reached and it isn't disabled.
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
