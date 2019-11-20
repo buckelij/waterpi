@@ -2,7 +2,7 @@ name: index-version
   
 on:
   schedule:
-    - cron:  '45 * * * *'
+    - cron:  '42 * * * *'
 
 jobs:
   build:
