@@ -1,0 +1,16 @@
+name: index-version
+  
+on:
+  schedule:
+    - cron:  '45 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: clone
+      uses: actions/checkout@v1
+    - name: check index version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: cat autossh.service
