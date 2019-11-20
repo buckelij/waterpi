@@ -2,7 +2,7 @@ name: check-flood
 
 on:
   schedule:
-    - cron:  '23 * * * *'
+    - cron:  '43 * * * *'
 
 jobs:
   build:
