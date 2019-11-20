@@ -1,0 +1,13 @@
+name: check-flood
+
+on:
+  schedule:
+    - cron:  '23 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./.github/check-flood
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
